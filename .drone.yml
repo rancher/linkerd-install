@@ -18,7 +18,6 @@ steps:
 - name: docker-publish
   image: plugins/docker
   settings:
-    dry_run: true
     dockerfile: Dockerfile
     password:
       from_secret: docker_password

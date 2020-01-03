@@ -7,14 +7,23 @@ platform:
   arch: amd64
 
 steps:
+- name: build
+  image: docker
+  commands:
+  - docker build -t rancher/linkerd-install:test -f Dockerfile .
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+
 - name: docker-publish
   image: plugins/docker
   settings:
+    dry_run: true
     dockerfile: Dockerfile
     password:
       from_secret: docker_password
     repo: "rancher/linkerd-install"
-    tag: "stable-${DRONE_TAG}-amd64"
+    tag: "${DRONE_TAG}-amd64"
     username:
       from_secret: docker_username
   when:

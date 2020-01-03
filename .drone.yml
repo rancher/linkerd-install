@@ -22,7 +22,7 @@ steps:
     password:
       from_secret: docker_password
     repo: "rancher/linkerd-install"
-    tag: "${DRONE_TAG}-amd64"
+    tag: "${DRONE_TAG}"
     username:
       from_secret: docker_username
   when:
